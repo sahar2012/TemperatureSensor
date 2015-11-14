@@ -3,15 +3,10 @@ package com.iiitd.ap.lab10;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TemperatureSensor implements Runnable
+public class TemperatureSensor
 {
 	private TemperatureLog temperatureLog = new TemperatureLog(35,"Delhi");
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
-	int id;
-	
-	public TemperatureSensor (int id) {
-		this.id = id;
-	}
 	
 	public void register(Observer observer)
 	{
@@ -39,19 +34,14 @@ public class TemperatureSensor implements Runnable
 			observer.update();
 		}
 	}
-
-	@Override
-	public void run() {
-		if (id ==1) {
-			setLog("Delhi");			
-		}
-		else if (id==2) {
-			setLog("Mumbai");
-		}
-		else if (id==3) {
-			setLog("Srinagar");
-		}
-		
+	
+	public void getTemperatureLog() {
+		Thread delhiThread = new Thread(new TemperatureReader(this,1));
+		Thread mumbaiThread = new Thread(new TemperatureReader(this,2));
+		Thread srinagarThread = new Thread(new TemperatureReader(this,3));
+		delhiThread.start();
+		mumbaiThread.start();
+		srinagarThread.start();
 	}
 	
 }
