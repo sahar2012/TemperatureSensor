@@ -1,10 +1,12 @@
 package com.iiitd.ap.lab10;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.sql.Timestamp;
+
 
 public class SerializeTemperature extends Observer
 {
@@ -16,14 +18,22 @@ public class SerializeTemperature extends Observer
 	}
 	
 	@Override
-	public void update() 
-	{
+	public void update(TemperatureLog temperatureLog) {
 		try {
-			FileOutputStream file = new FileOutputStream("src"+File.separator+"TemperatureLogsFile.txt");
-			ObjectOutputStream out = new ObjectOutputStream(file);
-			out.writeObject(this.temperatureSensor.getLogs());
-			out.close();
+			FileWriter file = new FileWriter("src"+File.separator+"TemperatureLogsFile.txt",true);
+			BufferedWriter bw = new BufferedWriter(file);
+			java.util.Date date= new java.util.Date();
+			Timestamp time = new Timestamp(date.getTime());
+			bw.write(time.toString());
+			bw.write(" ");
+			bw.write(temperatureLog.getCity());
+			bw.write(" ");
+			String temp = Double.toString(temperatureLog.getTemperature());
+			bw.write(temp);
+			bw.write("\n");
+			bw.close();
 			file.close();
+			
 		} 
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -32,6 +42,9 @@ public class SerializeTemperature extends Observer
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
+	
+	
 	
 }

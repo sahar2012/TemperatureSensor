@@ -1,6 +1,6 @@
 package com.iiitd.ap.lab10;
 
-public class TemperatureLog 
+public class TemperatureLog
 {
 	private double temperature;
 	private String city;

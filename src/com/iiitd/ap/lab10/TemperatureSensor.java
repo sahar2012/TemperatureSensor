@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class TemperatureSensor
 {
-	private TemperatureLog temperatureLog = new TemperatureLog(35,"Delhi");
+	//private TemperatureLog temperatureLog;
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
 	public void register(Observer observer)
@@ -13,25 +13,28 @@ public class TemperatureSensor
 		observers.add(observer);
 	}
 	
-	public TemperatureLog getLogs()
-	{
-		return this.temperatureLog;
-	}
+//	public TemperatureLog getLogs()
+//	{
+//		return this.temperatureLog;
+//	}
 	
 	public void setLog(String City)
 	{
-		temperatureLog.setCity(City);
+		//temperatureLog.setCity(City);
 		Random randomGenerator = new Random();
-		double randomTemp = randomGenerator.nextDouble();
-		temperatureLog.setTemperature(randomTemp);
-		notifyObservers();
+		double rangeMin = 5;
+		double rangeMax = 45;
+		double randomTemp = rangeMin + (rangeMax - rangeMin) * randomGenerator.nextDouble();
+		//temperatureLog.setTemperature(randomTemp);
+		TemperatureLog temperatureLog = new TemperatureLog(randomTemp,City);
+		notifyObservers(temperatureLog);
 	}
 	
-	public void notifyObservers()
+	public void notifyObservers(TemperatureLog temperatureLog)
 	{
 		for(Observer observer : observers)
 		{
-			observer.update();
+			observer.update(temperatureLog);
 		}
 	}
 	
