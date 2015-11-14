@@ -6,6 +6,8 @@ public class TemperatureSensorDemo {
 		TemperatureSensor temperatureSensor = new TemperatureSensor();
 		
 		new SerializeTemperature(temperatureSensor);
+		new TemperaturePredictor1(temperatureSensor);
+		new GenerateStats(temperatureSensor);
 		
 		temperatureSensor.getTemperatureLog();
 		
