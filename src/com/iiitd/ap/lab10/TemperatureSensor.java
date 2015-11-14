@@ -7,7 +7,34 @@ public class TemperatureSensor
 {
 	//private TemperatureLog temperatureLog;
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
+	private ArrayList<Double> delhiTemp = new ArrayList<>();
+	private ArrayList<Double> mumbaiTemp = new ArrayList<>();
+	private ArrayList<Double> srinagarTemp = new ArrayList<>();
 	
+	public ArrayList<Double> getDelhiTemp() {
+		return delhiTemp;
+	}
+
+	public void setDelhiTemp(ArrayList<Double> delhiTemp) {
+		this.delhiTemp = delhiTemp;
+	}
+
+	public ArrayList<Double> getMumbaiTemp() {
+		return mumbaiTemp;
+	}
+
+	public void setMumbaiTemp(ArrayList<Double> mumbaiTemp) {
+		this.mumbaiTemp = mumbaiTemp;
+	}
+
+	public ArrayList<Double> getSrinagarTemp() {
+		return srinagarTemp;
+	}
+
+	public void setSrinagarTemp(ArrayList<Double> srinagarTemp) {
+		this.srinagarTemp = srinagarTemp;
+	}
+
 	public void register(Observer observer)
 	{
 		observers.add(observer);

@@ -18,7 +18,16 @@ public class SerializeTemperature extends Observer
 	}
 	
 	@Override
-	public void update(TemperatureLog temperatureLog) {
+	synchronized public void update(TemperatureLog temperatureLog) {
+		if (temperatureLog.getCity().equals("Delhi")) {
+			temperatureSensor.getDelhiTemp().add(temperatureLog.getTemperature());
+		}
+		else if (temperatureLog.getCity().equals("Mumbai")) {
+			temperatureSensor.getMumbaiTemp().add(temperatureLog.getTemperature());
+		}
+		else if (temperatureLog.getCity().equals("Srinagar")) {
+			temperatureSensor.getSrinagarTemp().add(temperatureLog.getTemperature());
+		}
 		try {
 			FileWriter file = new FileWriter("src"+File.separator+"TemperatureLogsFile.txt",true);
 			BufferedWriter bw = new BufferedWriter(file);

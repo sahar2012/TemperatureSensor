@@ -1,10 +1,5 @@
 package com.iiitd.ap.lab10;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class GenerateStats extends Observer
@@ -53,32 +48,52 @@ public class GenerateStats extends Observer
 	}
 
 	@Override
-	public void update(TemperatureLog temperatureLog) 
+	synchronized public void update(TemperatureLog temperatureLog) 
 	{
-		try 
-		{
-			ArrayList<String> LogsList = new ArrayList<String>();
-			FileReader file = new FileReader("src"+File.separator+"TemperatureLogsFile.txt");
-			BufferedReader br = new BufferedReader(file);
-			String line;
-			while((line=br.readLine())!=null)
-			{
-				LogsList.add(line);
-			}
-			br.close();
-			file.close();
-			int listIndex=LogsList.size()-1;
-			int count=0;
+//			ArrayList<String> LogsList = new ArrayList<String>();
+//			FileReader file = new FileReader("src"+File.separator+"TemperatureLogsFile.txt");
+//			BufferedReader br = new BufferedReader(file);
+//			String line;
+//			while((line=br.readLine())!=null)
+//			{
+//				LogsList.add(line);
+//			}
+//			br.close();
+//			file.close();
+//			int listIndex=LogsList.size()-1;
+//			int count=0;
+//			ArrayList<Double> last100Records = new ArrayList<Double>();
+//			while(listIndex>=0 && count<100)
+//			{
+//				String[] args = LogsList.get(listIndex).split(" ");
+//				double temperature = Double.parseDouble(args[3]);
+//				if(args[2].equals(temperatureLog.getCity()))
+//				{
+//					last100Records.add(temperature);
+//				}
+//				listIndex--;
+//			}
 			ArrayList<Double> last100Records = new ArrayList<Double>();
-			while(listIndex>=0 && count<100)
+			if(temperatureLog.getCity().equals("Delhi"))
 			{
-				String[] args = LogsList.get(listIndex).split(" ");
-				double temperature = Double.parseDouble(args[3]);
-				if(args[2].equals(temperatureLog.getCity()))
+				for(int i=temperatureSensor.getDelhiTemp().size()-1;i>temperatureSensor.getDelhiTemp().size()-100 && i>=0;i--)
 				{
-					last100Records.add(temperature);
+					last100Records.add(temperatureSensor.getDelhiTemp().get(i));
 				}
-				listIndex--;
+			}
+			else if(temperatureLog.getCity().equals("Mumbai"))
+			{
+				for(int i=temperatureSensor.getMumbaiTemp().size()-1;i>temperatureSensor.getMumbaiTemp().size()-100 && i>=0;i--)
+				{
+					last100Records.add(temperatureSensor.getMumbaiTemp().get(i));
+				}
+			}
+			else if(temperatureLog.getCity().equals("Srinagar"))
+			{
+				for(int i=temperatureSensor.getSrinagarTemp().size()-1;i>temperatureSensor.getSrinagarTemp().size()-100 && i>=0;i--)
+				{
+					last100Records.add(temperatureSensor.getSrinagarTemp().get(i));
+				}
 			}
 			last100Records.sort(null);
 			double mean = getMeanTemp(last100Records);
@@ -90,13 +105,7 @@ public class GenerateStats extends Observer
 			System.out.println("\tMedian Temperature : "+median);
 			System.out.println("\tMax Temperature : "+max);
 			System.out.println("\tMin Temperature : "+min);
-		} 
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}				
+		
+					
 	}
 }

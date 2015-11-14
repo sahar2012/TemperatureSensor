@@ -20,7 +20,7 @@ public class TemperatureReader implements Runnable {
 				System.out.println("Enterted Delhi");
 				temperatureSensor.setLog("Delhi");
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(6000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class TemperatureReader implements Runnable {
 				System.out.println("Enterted Mumbai");
 				temperatureSensor.setLog("Mumbai");
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(6000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class TemperatureReader implements Runnable {
 				System.out.println("Entered Srinagar");
 				temperatureSensor.setLog("Srinagar");
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(6000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
