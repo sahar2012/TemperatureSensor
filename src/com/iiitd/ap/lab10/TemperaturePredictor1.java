@@ -48,21 +48,21 @@ public class TemperaturePredictor1 extends Observer
 			int count=0;
 			if (temperatureLog.getCity().equals("Delhi")) {
 				for (int i=temperatureSensor.getDelhiTemp().size()-1;i>temperatureSensor.getDelhiTemp().size()-6 && i>=0;i--) {
-					avg += temperatureLog.getTemperature();
+					avg += temperatureSensor.getDelhiTemp().get(i);
 					count++;
 				}
 				avg = avg/count;
 			}
 			else if (temperatureLog.getCity().equals("Mumbai")) {
 				for (int i=temperatureSensor.getMumbaiTemp().size()-1;i>temperatureSensor.getMumbaiTemp().size()-6 && i>=0;i--) {
-					avg += temperatureLog.getTemperature();
+					avg += temperatureSensor.getMumbaiTemp().get(i);
 					count++;
 				}
 				avg = avg/count;
 			}
 			if (temperatureLog.getCity().equals("Srinagar")) {
 				for (int i=temperatureSensor.getSrinagarTemp().size()-1;i>temperatureSensor.getSrinagarTemp().size()-6 && i>=0;i--) {
-					avg += temperatureLog.getTemperature();
+					avg += temperatureSensor.getSrinagarTemp().get(i);
 					count++;
 				}
 				avg = avg/count;

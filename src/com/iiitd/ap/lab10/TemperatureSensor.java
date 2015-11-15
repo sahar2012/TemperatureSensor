@@ -2,6 +2,7 @@ package com.iiitd.ap.lab10;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
 
 public class TemperatureSensor
 {
@@ -66,12 +67,19 @@ public class TemperatureSensor
 	}
 	
 	public void getTemperatureLog() {
-		Thread delhiThread = new Thread(new TemperatureReader(this,1));
-		Thread mumbaiThread = new Thread(new TemperatureReader(this,2));
-		Thread srinagarThread = new Thread(new TemperatureReader(this,3));
+		final CountDownLatch latch = new CountDownLatch(3);
+		Thread delhiThread = new Thread(new TemperatureReader(this,1,latch));
+		Thread mumbaiThread = new Thread(new TemperatureReader(this,2,latch));
+		Thread srinagarThread = new Thread(new TemperatureReader(this,3,latch));
 		delhiThread.start();
 		mumbaiThread.start();
 		srinagarThread.start();
+		try {
+			latch.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
