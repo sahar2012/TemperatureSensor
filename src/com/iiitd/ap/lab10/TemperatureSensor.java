@@ -11,7 +11,34 @@ public class TemperatureSensor
 	private ArrayList<Double> delhiTemp = new ArrayList<>();
 	private ArrayList<Double> mumbaiTemp = new ArrayList<>();
 	private ArrayList<Double> srinagarTemp = new ArrayList<>();
+	private Delhi delhi = new Delhi();
+	private Mumbai mumbai = new Mumbai();
+	private Srinagar srinagar = new Srinagar();
 	
+	public Delhi getDelhi() {
+		return delhi;
+	}
+
+	public void setDelhi(Delhi delhi) {
+		this.delhi = delhi;
+	}
+
+	public Mumbai getMumbai() {
+		return mumbai;
+	}
+
+	public void setMumbai(Mumbai mumbai) {
+		this.mumbai = mumbai;
+	}
+
+	public Srinagar getSrinagar() {
+		return srinagar;
+	}
+
+	public void setSrinagar(Srinagar srinagar) {
+		this.srinagar = srinagar;
+	}
+
 	public ArrayList<Double> getDelhiTemp() {
 		return delhiTemp;
 	}
@@ -66,6 +93,13 @@ public class TemperatureSensor
 		}
 	}
 	
+	public void printToConsole () {
+		delhi.print();
+		mumbai.print();
+		srinagar.print();
+		
+	}
+	
 	public void getTemperatureLog() throws InterruptedException {
 		final CountDownLatch latch = new CountDownLatch(3);
 		while (true) {
@@ -78,6 +112,7 @@ public class TemperatureSensor
 			delhiThread.join();
 			mumbaiThread.join();
 			srinagarThread.join();
+			printToConsole();
 			Thread.sleep(5000);
 		}
 //		try {

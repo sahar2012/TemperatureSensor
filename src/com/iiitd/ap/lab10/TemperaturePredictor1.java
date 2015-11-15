@@ -52,6 +52,7 @@ public class TemperaturePredictor1 extends Observer
 					count++;
 				}
 				avg = avg/count;
+				temperatureSensor.getDelhi().setJavaPredictor(avg);
 			}
 			else if (temperatureLog.getCity().equals("Mumbai")) {
 				for (int i=temperatureSensor.getMumbaiTemp().size()-1;i>temperatureSensor.getMumbaiTemp().size()-6 && i>=0;i--) {
@@ -59,6 +60,7 @@ public class TemperaturePredictor1 extends Observer
 					count++;
 				}
 				avg = avg/count;
+				temperatureSensor.getMumbai().setJavaPredictor(avg);
 			}
 			if (temperatureLog.getCity().equals("Srinagar")) {
 				for (int i=temperatureSensor.getSrinagarTemp().size()-1;i>temperatureSensor.getSrinagarTemp().size()-6 && i>=0;i--) {
@@ -66,8 +68,10 @@ public class TemperaturePredictor1 extends Observer
 					count++;
 				}
 				avg = avg/count;
+				temperatureSensor.getSrinagar().setJavaPredictor(avg);
 			}
-			System.out.println("Java Predicted temperature for "+temperatureLog.getCity()+" - "+avg);	
+			
+			//System.out.println("Java Predicted temperature for "+temperatureLog.getCity()+" - "+avg);	
 		
 	}
 }

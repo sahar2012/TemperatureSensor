@@ -17,15 +17,15 @@ public class TemperatureReader implements Runnable {
 	@Override
 	public void run() {
 		if (id ==1) {
-				System.out.println("Enterted Delhi");
+				//System.out.println("Enterted Delhi");
 				temperatureSensor.setLog("Delhi");
 		}
 		else if (id==2) {
-				System.out.println("Enterted Mumbai");
+				//System.out.println("Enterted Mumbai");
 				temperatureSensor.setLog("Mumbai");
 		}
 		else if (id==3) {
-				System.out.println("Entered Srinagar");
+				//System.out.println("Entered Srinagar");
 				temperatureSensor.setLog("Srinagar");
 		}
 		

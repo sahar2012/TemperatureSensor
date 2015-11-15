@@ -50,29 +50,6 @@ public class GenerateStats extends Observer
 	@Override
 	synchronized public void update(TemperatureLog temperatureLog) 
 	{
-//			ArrayList<String> LogsList = new ArrayList<String>();
-//			FileReader file = new FileReader("src"+File.separator+"TemperatureLogsFile.txt");
-//			BufferedReader br = new BufferedReader(file);
-//			String line;
-//			while((line=br.readLine())!=null)
-//			{
-//				LogsList.add(line);
-//			}
-//			br.close();
-//			file.close();
-//			int listIndex=LogsList.size()-1;
-//			int count=0;
-//			ArrayList<Double> last100Records = new ArrayList<Double>();
-//			while(listIndex>=0 && count<100)
-//			{
-//				String[] args = LogsList.get(listIndex).split(" ");
-//				double temperature = Double.parseDouble(args[3]);
-//				if(args[2].equals(temperatureLog.getCity()))
-//				{
-//					last100Records.add(temperature);
-//				}
-//				listIndex--;
-//			}
 			ArrayList<Double> last100Records = new ArrayList<Double>();
 			if(temperatureLog.getCity().equals("Delhi"))
 			{
@@ -80,6 +57,11 @@ public class GenerateStats extends Observer
 				{
 					last100Records.add(temperatureSensor.getDelhiTemp().get(i));
 				}
+				last100Records.sort(null);
+				temperatureSensor.getDelhi().setMean(getMeanTemp(last100Records));
+				temperatureSensor.getDelhi().setMedian(getMedianTemp(last100Records));
+				temperatureSensor.getDelhi().setMax(getMaxTemp(last100Records));
+				temperatureSensor.getDelhi().setMin(getMinTemp(last100Records));
 			}
 			else if(temperatureLog.getCity().equals("Mumbai"))
 			{
@@ -87,6 +69,11 @@ public class GenerateStats extends Observer
 				{
 					last100Records.add(temperatureSensor.getMumbaiTemp().get(i));
 				}
+				last100Records.sort(null);
+				temperatureSensor.getMumbai().setMean(getMeanTemp(last100Records));
+				temperatureSensor.getMumbai().setMedian(getMedianTemp(last100Records));
+				temperatureSensor.getMumbai().setMax(getMaxTemp(last100Records));
+				temperatureSensor.getMumbai().setMin(getMinTemp(last100Records));
 			}
 			else if(temperatureLog.getCity().equals("Srinagar"))
 			{
@@ -94,17 +81,18 @@ public class GenerateStats extends Observer
 				{
 					last100Records.add(temperatureSensor.getSrinagarTemp().get(i));
 				}
+				last100Records.sort(null);
+				temperatureSensor.getSrinagar().setMean(getMeanTemp(last100Records));
+				temperatureSensor.getSrinagar().setMedian(getMedianTemp(last100Records));
+				temperatureSensor.getSrinagar().setMax(getMaxTemp(last100Records));
+				temperatureSensor.getSrinagar().setMin(getMinTemp(last100Records));
 			}
-			last100Records.sort(null);
-			double mean = getMeanTemp(last100Records);
-			double median = getMedianTemp(last100Records);
-			double max = getMaxTemp(last100Records);
-			double min = getMinTemp(last100Records);
-			System.out.println("Stats for "+temperatureLog.getCity()+" :\n");
-			System.out.println("\tMean Temperature : "+mean);
-			System.out.println("\tMedian Temperature : "+median);
-			System.out.println("\tMax Temperature : "+max);
-			System.out.println("\tMin Temperature : "+min);
+			
+//			System.out.println("Stats for "+temperatureLog.getCity()+" :\n");
+//			System.out.println("\tMean Temperature : "+mean);
+//			System.out.println("\tMedian Temperature : "+median);
+//			System.out.println("\tMax Temperature : "+max);
+//			System.out.println("\tMin Temperature : "+min);
 		
 					
 	}
