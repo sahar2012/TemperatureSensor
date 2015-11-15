@@ -17,40 +17,16 @@ public class TemperatureReader implements Runnable {
 	@Override
 	public void run() {
 		if (id ==1) {
-			while (true) {
 				System.out.println("Enterted Delhi");
 				temperatureSensor.setLog("Delhi");
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		else if (id==2) {
-			while (true) {
 				System.out.println("Enterted Mumbai");
 				temperatureSensor.setLog("Mumbai");
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		else if (id==3) {
-			while (true) {
 				System.out.println("Entered Srinagar");
 				temperatureSensor.setLog("Srinagar");
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 		
 		latch.countDown();

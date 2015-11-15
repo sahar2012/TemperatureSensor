@@ -2,7 +2,7 @@ package com.iiitd.ap.lab10;
 
 public class TemperatureSensorDemo {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		TemperatureSensor temperatureSensor = new TemperatureSensor();
 		temperatureSensor.getDelhiTemp().add(35.0);
 		temperatureSensor.getMumbaiTemp().add(35.0);

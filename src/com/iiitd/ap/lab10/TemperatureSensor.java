@@ -66,20 +66,26 @@ public class TemperatureSensor
 		}
 	}
 	
-	public void getTemperatureLog() {
+	public void getTemperatureLog() throws InterruptedException {
 		final CountDownLatch latch = new CountDownLatch(3);
-		Thread delhiThread = new Thread(new TemperatureReader(this,1,latch));
-		Thread mumbaiThread = new Thread(new TemperatureReader(this,2,latch));
-		Thread srinagarThread = new Thread(new TemperatureReader(this,3,latch));
-		delhiThread.start();
-		mumbaiThread.start();
-		srinagarThread.start();
-		try {
-			latch.await();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while (true) {
+			Thread delhiThread = new Thread(new TemperatureReader(this,1,latch));
+			Thread mumbaiThread = new Thread(new TemperatureReader(this,2,latch));
+			Thread srinagarThread = new Thread(new TemperatureReader(this,3,latch));
+			delhiThread.start();
+			mumbaiThread.start();
+			srinagarThread.start();
+			delhiThread.join();
+			mumbaiThread.join();
+			srinagarThread.join();
+			Thread.sleep(5000);
 		}
+//		try {
+//			latch.await();
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 }
