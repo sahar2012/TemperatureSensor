@@ -1,11 +1,7 @@
-package com.iiitd.ap.lab10;
+//@author - Nalin Gupta 2014065
+//			Sahar Siddiqui 2014091
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
+package com.iiitd.ap.lab10;
 
 public class TemperaturePredictor1 extends Observer
 {	

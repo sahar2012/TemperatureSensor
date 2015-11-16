@@ -1,3 +1,6 @@
+//@author - Nalin Gupta 2014065
+//			Sahar Siddiqui 2014091
+
 package com.iiitd.ap.lab10;
 
 public class TemperaturePredictor2 extends Observer
@@ -28,8 +31,9 @@ public class TemperaturePredictor2 extends Observer
 			}
 			else
 			{	
-				for(i=0;i<temperatureSensor.getDelhiTemp().size()-5;i++)
+				for(i=0;i<=temperatureSensor.getDelhiTemp().size()-5;i++)
 				{
+					tempVal = 0;
 					for(j=i;j<i+5;j++)
 					{
 						tempVal += temperatureSensor.getDelhiTemp().get(j);
@@ -53,8 +57,9 @@ public class TemperaturePredictor2 extends Observer
 			}
 			else
 			{	
-				for(i=0;i<temperatureSensor.getMumbaiTemp().size()-5;i++)
+				for(i=0;i<=temperatureSensor.getMumbaiTemp().size()-5;i++)
 				{
+					tempVal = 0;
 					for(j=i;j<i+5;j++)
 					{
 						tempVal += temperatureSensor.getMumbaiTemp().get(j);
@@ -78,8 +83,9 @@ public class TemperaturePredictor2 extends Observer
 			}
 			else
 			{	
-				for(i=0;i<temperatureSensor.getSrinagarTemp().size()-5;i++)
+				for(i=0;i<=temperatureSensor.getSrinagarTemp().size()-5;i++)
 				{
+					tempVal = 0;
 					for(j=i;j<i+5;j++)
 					{
 						tempVal += temperatureSensor.getSrinagarTemp().get(j);

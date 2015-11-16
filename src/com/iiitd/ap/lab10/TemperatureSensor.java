@@ -1,3 +1,6 @@
+//@author - Nalin Gupta 2014065
+//			Sahar Siddiqui 2014091
+
 package com.iiitd.ap.lab10;
 
 import java.util.ArrayList;
@@ -76,10 +79,11 @@ public class TemperatureSensor
 	public void setLog(String City)
 	{
 		//temperatureLog.setCity(City);
-		Random randomGenerator = new Random();
+		//Random randomGenerator = new Random();
+		UserRandom randomGenerator = new UserRandom();
 		double rangeMin = 5;
 		double rangeMax = 45;
-		double randomTemp = rangeMin + (rangeMax - rangeMin) * randomGenerator.nextDouble();
+		double randomTemp = rangeMin + (rangeMax + rangeMin) * randomGenerator.nextVal();
 		//temperatureLog.setTemperature(randomTemp);
 		TemperatureLog temperatureLog = new TemperatureLog(randomTemp,City);
 		notifyObservers(temperatureLog);
